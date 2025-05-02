@@ -22,22 +22,27 @@ function calcularIMC(event) {
   if (imc < 18.5) {
     classificacao = "Abaixo do peso";
     cor = "text-yellow-500";
+    icone = "⚠️";
   } else if (imc <= 24.9) {
     classificacao = "Peso normal";
     cor = "text-green-600";
+    icone = "✅";
   } else if (imc <= 29.9) {
     classificacao = "Sobrepeso";
     cor = "text-yellow-600";
+    icone = "⚠️";
   } else if (imc <= 34.9) {
     classificacao = "Obesidade grau I";
     cor = "text-orange-600";
+    icone = "❗";
   } else {
     classificacao = "Obesidade grau II ou mais";
     cor = "text-red-600";
+    icone = "❌";
   }
 
   resultado.innerHTML = `
-    <p class="${cor}">
+    <p class="${cor}">${icone}
       Seu IMC é <strong>${imc}</strong><br>${classificacao}
     </p>`;
 }
