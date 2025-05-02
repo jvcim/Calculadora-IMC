@@ -1,30 +1,43 @@
+document.getElementById("formIMC").addEventListener("submit", calcularIMC);
+
 function calcularIMC(event) {
+  event.preventDefault();
 
-event.preventDefault();
+  const peso = document.getElementById("Peso").value.replace(",", ".");
+  const altura = document.getElementById("Altura").value.replace(",", ".");
 
-//Pegando valor do imput
-const peso = document.getElementById("Peso").value;
-const altura = document.getElementById("Altura").value;
+  const pesoConvertido = Number(peso);
+  const alturaConvertida = Number(altura);
+  const resultado = document.getElementById("Resultado");
 
-//convertendo dados do input em número
-const pesoConvertido = Number(peso);
-const alturaConvertida = Number(altura);
+  if (isNaN(pesoConvertido) || isNaN(alturaConvertida) || alturaConvertida <= 0) {
+    resultado.innerHTML = `<span class="text-red-600">Insira valores válidos para peso e altura.</span>`;
+    return;
+  }
 
-const imc = (pesoConvertido / (alturaConvertida * alturaConvertida)).toFixed(2);
+  const imc = (pesoConvertido / (alturaConvertida * alturaConvertida)).toFixed(2);
+  let classificacao = "";
+  let cor = "";
 
-let classificacao = ""
-if (imc < 18.5)
-  classificacao = "Abaixo do peso";
-else if (imc >= 18.5 && imc <= 24.9) {
-  classificacao = "Peso normal";
-} else if (imc >= 25 && imc <= 29.9) {
-  classificacao = "Sobrepeso";
-} else if (imc >= 30 && imc <= 34.9) {
-  classificacao = "Obesidade grau I";
-} else {
-  classificacao = "Obesidade grau II ou mais";
-}
+  if (imc < 18.5) {
+    classificacao = "Abaixo do peso";
+    cor = "text-yellow-500";
+  } else if (imc <= 24.9) {
+    classificacao = "Peso normal";
+    cor = "text-green-600";
+  } else if (imc <= 29.9) {
+    classificacao = "Sobrepeso";
+    cor = "text-yellow-600";
+  } else if (imc <= 34.9) {
+    classificacao = "Obesidade grau I";
+    cor = "text-orange-600";
+  } else {
+    classificacao = "Obesidade grau II ou mais";
+    cor = "text-red-600";
+  }
 
-const resultado = document.getElementById("Resultado");
-resultado.innerText = `Seu IMC é ${imc} - ${classificacao}`;
+  resultado.innerHTML = `
+    <p class="${cor}">
+      Seu IMC é <strong>${imc}</strong><br>${classificacao}
+    </p>`;
 }
