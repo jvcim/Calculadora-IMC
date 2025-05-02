@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calculadora IMC</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-gradient-to-br from-slate-800 via-slate-900 to-black min-h-screen flex items-center justify-center text-white font-sans">
+<body class="bg-gradient-to-br from-slate-800 via-slate-900 to-black min-h-screen flex flex-col items-center justify-center text-white font-sans p-4">
   <form id="formIMC" class="bg-white p-8 rounded-2xl shadow-2xl space-y-4 text-black w-full max-w-sm">
     <div>
       <label for="Peso" class="block font-semibold">Peso (kg)</label>
@@ -22,6 +22,8 @@
     </button>
     <div id="Resultado" class="text-center font-bold text-lg mt-4"></div>
   </form>
+
+  <div id="historicoIMC" class="mt-8 w-full max-w-sm space-y-2"></div>
 
   <script src="script.js"></script>
 </body>
